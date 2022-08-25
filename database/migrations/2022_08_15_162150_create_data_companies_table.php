@@ -16,15 +16,15 @@ class CreateDataCompaniesTable extends Migration
         Schema::create('data_companies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('namaPerusahaan',50)->nullable();
-            $table->string('alamat',100)->nullable();
-            $table->string('kab',35)->nullable();
-            $table->string('provinsi',50)->nullable();
-            $table->string('kodepos',6)->nullable();
-            $table->string('notelp',13)->nullable();
-            $table->string('email',50)->nullable();
-            $table->string('npwp',16)->nullable();
-            $table->string('status',1)->nullable();
+            $table->string('namaPerusahaan', 50)->nullable();
+            $table->string('alamat', 100)->nullable();
+            $table->string('kab', 35)->nullable();
+            $table->string('provinsi', 50)->nullable();
+            $table->string('kodepos', 6)->nullable();
+            $table->string('notelp', 13)->nullable();
+            $table->string('email', 50)->nullable();
+            $table->string('npwp', 16)->nullable();
+            $table->string('status', 1)->nullable();
             $table->bigInteger('id_user')->unsigned();
 
             $table->foreign('id_user')->references('id')->on('users');

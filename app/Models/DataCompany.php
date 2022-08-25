@@ -12,8 +12,8 @@ class DataCompany extends Model
     protected $table = 'data_companies';
 
     protected $fillable = [
-        'namaPerusahaan', 
-        'alamat', 
+        'namaPerusahaan',
+        'alamat',
         'kab',
         'provinsi',
         'kodepos',
@@ -32,5 +32,10 @@ class DataCompany extends Model
     public function dokumen()
     {
         return $this->hasOne('App\Models\DokumenCompany', 'id_biodata');
+    }
+
+    public function tender()
+    {
+        return $this->hasOne('App\Models\TenderModal', 'id_vendor');
     }
 }

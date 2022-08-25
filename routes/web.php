@@ -36,6 +36,23 @@ Route::put('/updateData/{id}', [App\Http\Controllers\UtilityController::class, '
 
 Route::group(['middleware' => ['is_role:1']], function () {
     Route::get('/superadmin', [App\Http\Controllers\superadmin\SuperAdminController::class, 'index'])->name('superadmin.index');
+
+    Route::get('/user', [App\Http\Controllers\superadmin\SuperAdminController::class, 'userApp'])->name('superadmin.user.index');
+    Route::get('/create_user', [App\Http\Controllers\superadmin\UserController::class, 'create'])->name('superadmin.user.create');
+    Route::post('/store_user', [App\Http\Controllers\superadmin\UserController::class, 'store'])->name('superadmin.user.store');
+    Route::get('/edit_user/{id}', [App\Http\Controllers\superadmin\UserController::class, 'edit'])->name('superadmin.user.edit');
+    Route::post('/update_user/{id}', [App\Http\Controllers\superadmin\UserController::class, 'update'])->name('superadmin.user.update');
+
+    Route::get('/vendors', [App\Http\Controllers\superadmin\SuperAdminController::class, 'vendorApp'])->name('superadmin.vendors.index');
+    Route::get('/detail_vendor/{id}', [App\Http\Controllers\superadmin\VendorController::class, 'show'])->name('superadmin.vendors.detail');
+
+    Route::get('/downloadNpwp/{npwp}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenNPWP'])->name('superadmin.npwp.download');
+
+
+    Route::get('/tenders', [App\Http\Controllers\superadmin\SuperAdminController::class, 'tenderList'])->name('superadmin.tender.index');
+    Route::get('/create_tender', [App\Http\Controllers\superadmin\TenderController::class, 'create'])->name('superadmin.tender.create');
+    Route::post('/post_tender', [App\Http\Controllers\superadmin\TenderController::class, 'store'])->name('superadmin.tender.store');
+    Route::get('/detail_tender/{id}', [App\Http\Controllers\superadmin\TenderController::class, 'show'])->name('superadmin.tender.detail');
 });
 
 Route::group(['middleware' => ['is_role:2']], function () {
@@ -46,7 +63,6 @@ Route::group(['middleware' => ['is_role:2']], function () {
     Route::get('/preview/{id}', [App\Http\Controllers\admin\AdminController::class, 'preview'])->name('admin.penyedia.preview');
     Route::get('/download/{npwp}', [App\Http\Controllers\admin\AdminController::class, 'download'])->name('admin.penyedia.download');
     Route::post('/sendEmail/{id}', [App\Http\Controllers\admin\AdminController::class, 'sendEmail'])->name('admin.penyedia.sendEmail');
-
 });
 
 Route::group(['middleware' => ['is_role:3']], function () {

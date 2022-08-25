@@ -99,6 +99,24 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
           <ul id="sidebarnav" class="pt-4">
+            @if (Auth::user()->is_role == 1)
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i
+                  class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('superadmin.user.index')}}" aria-expanded="false"><i
+                  class="mdi mdi-account-box"></i><span class="hide-menu">User</span></a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('superadmin.vendors.index')}}" aria-expanded="false"><i
+                  class="mdi mdi-city"></i><span class="hide-menu">Vendor</span></a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('superadmin.tender.index')}}" aria-expanded="false"><i
+                  class="mdi mdi-clipboard"></i><span class="hide-menu">Tender</span></a>
+            </li>
+            @elseif (Auth::user()->is_role == 2)
             <li class="sidebar-item">
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i
                   class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
@@ -107,6 +125,12 @@
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.penyedia.index')}}" aria-expanded="false"><i
                   class="mdi mdi-view-dashboard"></i><span class="hide-menu">Pengguna Baru</span></a>
             </li>
+            @elseif (Auth::user()->is_role == 3)
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i
+                  class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
+            </li>
+            @endif 
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
