@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/AuthLogin', [App\Http\Controllers\BackEnd\AuthController::class, 'index'])->name('AuthLogin');
+Route::post('/ActionLogin', [App\Http\Controllers\BackEnd\AuthController::class, 'actionLogin'])->name('ActionLogin');
+
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 Route::get('/login', [App\Http\Controllers\IndexController::class, 'login'])->name('login');
 Route::get('/regis', [App\Http\Controllers\IndexController::class, 'regis'])->name('regis');
@@ -27,7 +30,7 @@ Route::get('/contact', [App\Http\Controllers\IndexController::class, 'contact'])
 Route::get('/activity', [App\Http\Controllers\IndexController::class, 'activity'])->name('activity');
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news');
 Route::get('/biodata/{id}', [App\Http\Controllers\IndexController::class, 'biodata'])->name('biodata');
-Route::get('/dokumen/{id}', [App\Http\Controllers\IndexController::class, 'dokumen'])->name('dokumen');
+Route::get('/dokumen/{data}', [App\Http\Controllers\IndexController::class, 'dokumen'])->name('dokumen');
 
 Route::post('/actionAuth', [App\Http\Controllers\UtilityController::class, 'actionAuth'])->name('actionAuth');
 Route::post('/regAuth', [App\Http\Controllers\UtilityController::class, 'regAuth'])->name('regAuth');
@@ -47,6 +50,11 @@ Route::group(['middleware' => ['is_role:1']], function () {
     Route::get('/detail_vendor/{id}', [App\Http\Controllers\superadmin\VendorController::class, 'show'])->name('superadmin.vendors.detail');
 
     Route::get('/downloadNpwp/{npwp}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenNPWP'])->name('superadmin.npwp.download');
+    Route::get('/downloadAkta/{akta}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenAkta'])->name('superadmin.akta.download');
+    Route::get('/downloadUsaha/{induk}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenIndukUsaha'])->name('superadmin.usaha.download');
+    Route::get('/downloadPendaftaran/{daftar}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenPendaftaran'])->name('superadmin.pendaftaran.download');
+    Route::get('/downloadDokumenPernyataan/{perynataan}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenPernyataan'])->name('superadmin.pernyataan.download');
+    Route::get('/downloadDokumenImage/{image}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenImage'])->name('superadmin.image.download');
 
 
     Route::get('/tenders', [App\Http\Controllers\superadmin\SuperAdminController::class, 'tenderList'])->name('superadmin.tender.index');

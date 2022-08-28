@@ -13,6 +13,12 @@ class DokumenCompany extends Model
 
     protected $fillable = [
         'npwp',
+        'aktaUsaha',
+        'dokumenIndukUsaha',
+        'nomorIndukUsaha',
+        'workshop',
+        'suratPeryantaan',
+        'suratPendaftaran',
         'id_biodata',
     ];
 

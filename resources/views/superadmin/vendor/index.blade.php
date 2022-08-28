@@ -46,10 +46,10 @@
                         @foreach ($companys as $key=> $company)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$company->namaPerusahaan}}
-                                <p class="text-info" style="text-size-adjust: 8">NPWP : {{$company->npwp}}</p>
+                            <td>{{$company->nameVendor}}
+                                <p class="text-info" style="text-size-adjust: 8">NPWP : {{$company->noNpwp}}</p>
                             </td>
-                            <td>{{$company->user->email}}</td>
+                            <td>{{$company->email}}</td>
                             <td>{{$company->alamat}}
                             <p class="text-info">{{$company->kab}}, {{$company->provinsi}}, {{$company->kodepos}}
                                 <br>{{$company->notelp}}

@@ -87,6 +87,32 @@ class VendorController extends Controller
 
     public function downloadDokumenNPWP(Request $request, $npwp)
     {
-        return response()->download(public_path('dokumen/' . $npwp));
+        return response()->download(public_path('dokumen/npwp/' . $npwp));
+    }
+
+    public function downloadDokumenAkta(Request $request, $akta)
+    {
+        return response()->download(public_path('dokumen/akta/' . $akta));
+    }
+
+
+    public function downloadDokumenIndukUsaha(Request $request, $induk)
+    {
+        return response()->download(public_path('dokumen/induk/' . $induk));
+    }
+
+    public function downloadDokumenPendaftaran(Request $request, $daftar)
+    {
+        return response()->download(public_path('dokumen/pendaftaran/' . $daftar));
+    }
+
+    public function downloadDokumenPernyataan(Request $request, $perynataan)
+    {
+        return response()->download(public_path('dokumen/pernyataan/' . $perynataan));
+    }
+
+    public function downloadDokumenImage(Request $request, $image)
+    {
+        return response()->download(public_path('dokumen/workshop/' . $image));
     }
 }

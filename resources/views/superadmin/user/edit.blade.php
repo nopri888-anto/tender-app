@@ -46,6 +46,12 @@
                             @csrf
                           <div class="modal-body">
                             <div class="form-group row">
+                              <label for="name" class="col-sm-2 control-label col-form-label">Name</label>
+                              <div class="col-sm-4">
+                                <input type="text" class="form-control" name="name" value="{{$user->name}}"/>
+                              </div>
+                            </div>
+                            <div class="form-group row">
                               <label for="username" class="col-sm-2 control-label col-form-label">Username</label>
                               <div class="col-sm-4">
                                 <input type="text" class="form-control" name="username" value="{{$user->username}}"/>

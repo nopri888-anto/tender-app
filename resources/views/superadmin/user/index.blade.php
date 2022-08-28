@@ -37,6 +37,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Name</th>
                           <th>Username</th>
                           <th>Email</th>
                           <th>Role</th>
@@ -47,6 +48,7 @@
                         @foreach ($users as $key=> $user)
                         <tr>
                             <td>{{$key+1}}</td>
+                            <td>{{$user->name}}</td>
                             <td>{{$user->username}}</td>
                             <td>{{$user->email}}</td>
                             <td>@if ($user->is_role == 1)Superadmin @elseif($user->is_role == 2)Admin @elseif($user->is_role == 3)Penyedia

@@ -32,14 +32,14 @@
                         <div class="row g-3">
                             <div class="col-md-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="namaPerusahaan" id="namaPerusahaan" required placeholder="Nama Perusahaan">
-                                    <label for="namaPerusahaan">Nama Perusahaan</label>
+                                    <input type="text" class="form-control" name="nameVendor" id="nameVendor" required placeholder="Nama Vendor">
+                                    <label for="nameVendor">Nama Vendor</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="npwp" id="npwp" maxlength="16" required placeholder="Nomor NPWP">
-                                    <label for="npwp">Nomor NPWP</label>
+                                    <input type="text" class="form-control" name="noNpwp" id="noNpwp" maxlength="16" required placeholder="Nomor NPWP">
+                                    <label for="noNpwp">Nomor NPWP</label>
                                 </div>
                             </div>
                             <div class="col-12">

@@ -12,21 +12,23 @@ class DataCompany extends Model
     protected $table = 'data_companies';
 
     protected $fillable = [
-        'namaPerusahaan',
+        'kodeVendor',
+        'nameVendor',
         'alamat',
         'kab',
         'provinsi',
         'kodepos',
         'notelp',
         'email',
-        'npwp',
-        'id_user',
+        'noNpwp',
+        'noKtp',
+        'status',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User', 'id_user');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\Models\User', 'id_user');
+    // }
 
 
     public function dokumen()
