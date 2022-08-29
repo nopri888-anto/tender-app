@@ -70,8 +70,8 @@ class UtilityController extends Controller
 
             if ($dataCompany) {
                 $id = $dataCompany->id;
-                $data = DataCompany::where('id', '=', $id)->first();
-                return redirect()->route('biodata', compact('data'))->with([
+                $data = DataCompany::find($id);
+                return redirect()->route('biodata',compact('data'))->with([
                     'toast_success' => 'Mohon isi data perusahaan!'
                 ]);
             } else {
@@ -95,7 +95,7 @@ class UtilityController extends Controller
             'noKtp' => 'required|numeric',
         ]);
 
-        $data = DataCompany::where('id', '=', $id);
+        $data = DataCompany::find($id);
         $ktp = $data->noKtp;
 
         if ($ktp) {

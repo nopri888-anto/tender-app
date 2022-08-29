@@ -24,7 +24,7 @@
 @endif
                 <div class="p-lg ps-lg-0">
                     <h6 class="text-primary">Data Company</h6>
-                    <form method="POST" action="{{route('updateData')}}"> 
+                    <form method="POST" action="{{route('updateData', $data->id)}}"> 
                         @csrf
                         @method('PUT')
                         <div class="row g-3">
@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="notelp" id="notelp" required placeholder="No Telp">
+                                    <input type="text" class="form-control" maxlength="13"  name="notelp" id="notelp" required placeholder="No Telp">
                                     <label for="notelp">No Telp</label>
                                 </div>
                             </div>
