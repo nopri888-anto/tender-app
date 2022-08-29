@@ -42,36 +42,41 @@ class UtilityController extends Controller
 
     public function regAuth(Request $request)
     {
+        $messages = [
+            'unique' => 'NPWP ini Sudah digunakan',
+        ];
+
         $this->validate($request, [
             'nameVendor' => 'required',
-            'noNpwp' => 'required|numeric',
+            'noNpwp' => 'required|numeric|unique:data_companies,noNpwp',
+        ], $messages);
+
+        $dataCompany = DataCompany::create([
+            'kodeVendor' => '',
+            'nameVendor' => $request->nameVendor,
+            'alamat' => '',
+            'kab' => '',
+            'provinsi' => '',
+            'kodepos' => '',
+            'notelp' => '',
+            'email' => '',
+            'noNpwp' => $request->noNpwp,
+            'noKtp' => '',
+            'status' => 2,
         ]);
 
+        dd($dataCompany);
 
-        $npwp = DataCompany::where('noNpwp', '=', $request->noNpwp)->first();
-
-        if ($npwp) {
+        if ($dataCompany) {
             return redirect()->route('regis')
                 ->with('toast_error', 'NPWP Sudah Digunakan.');
         } else {
-            $dataCompany = DataCompany::create([
-                'kodeVendor' => '',
-                'nameVendor' => $request->nameVendor,
-                'alamat' => '',
-                'kab' => '',
-                'provinsi' => '',
-                'kodepos' => '',
-                'notelp' => '',
-                'email' => '',
-                'noNpwp' => $request->noNpwp,
-                'noKtp' => '',
-                'status' => 2,
-            ]);
+
 
             if ($dataCompany) {
                 $id = $dataCompany->id;
                 $data = DataCompany::find($id);
-                return redirect()->route('biodata',compact('data'))->with([
+                return redirect()->route('biodata', compact('data'))->with([
                     'toast_success' => 'Mohon isi data perusahaan!'
                 ]);
             } else {
@@ -143,22 +148,22 @@ class UtilityController extends Controller
             'id_biodata' => 'required',
         ]);
 
-        $npwp = 'N' . time(now()) . '.' . $request->npwp->getClientOriginalExtension();
+        $npwp = 'N' . time() . '.' . $request->npwp->getClientOriginalExtension();
         $request->npwp->move(public_path('dokumen/npwp'), $npwp);
 
-        $akta = 'A' . time(now()) . '.' . $request->aktaUsaha->getClientOriginalExtension();
+        $akta = 'A' . time() . '.' . $request->aktaUsaha->getClientOriginalExtension();
         $request->aktaUsaha->move(public_path('dokumen/akta'), $akta);
 
-        $dokIndukUsaha = 'D' . time(now()) . '.' . $request->dokumenIndukUsaha->getClientOriginalExtension();
+        $dokIndukUsaha = 'D' . time() . '.' . $request->dokumenIndukUsaha->getClientOriginalExtension();
         $request->dokumenIndukUsaha->move(public_path('dokumen/induk'), $dokIndukUsaha);
 
-        $workshop = 'W' . time(now()) . '.' . $request->fotoWorkshop->getClientOriginalExtension();
+        $workshop = 'W' . time() . '.' . $request->fotoWorkshop->getClientOriginalExtension();
         $request->fotoWorkshop->move(public_path('dokumen/workshop'), $workshop);
 
-        $pernyataan = 'PR' . time(now()) . '.' . $request->suratPernyataan->getClientOriginalExtension();
+        $pernyataan = 'PR' . time() . '.' . $request->suratPernyataan->getClientOriginalExtension();
         $request->suratPernyataan->move(public_path('dokumen/pernyataan'), $pernyataan);
 
-        $pendaftaran = 'PD' . time(now()) . '.' . $request->suratPendaftaran->getClientOriginalExtension();
+        $pendaftaran = 'PD' . time() . '.' . $request->suratPendaftaran->getClientOriginalExtension();
         $request->suratPendaftaran->move(public_path('dokumen/pendaftaran'), $pendaftaran);
 
 
