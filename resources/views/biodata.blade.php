@@ -28,12 +28,12 @@
                         @csrf
                         @method('PUT')
                         <div class="row g-3">
-                            <div class="col-md-8">
+                            {{-- <div class="col-md-8">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="nameVendor" id="nameVendor" value="{{$data->nameVendor}}" readonly>
                                     <label for="nameVendor">Nama Perusahaan</label>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-8">
                                 <div class="form-floating">
                                     <textarea type="text" class="form-control" name="alamat" id="alamat" required placeholder="Alamat"></textarea>
@@ -72,8 +72,14 @@
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="16" name="noKtp" id="noKtp" required placeholder="No KTP">
-                                    <label for="noKtp">No KTP</label>
+                                    <input type="text" class="form-control" maxlength="16" name="noNpwp" id="noNpwp" required placeholder="No NPWP">
+                                    <label for="noNpwp">No NPWP</label>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" maxlength="16" name="noNpwp" id="noNpwp" required value="{{$data->id}}">
+                                    <label for="noNpwp">No NPWP</label>
                                 </div>
                             </div>
                             

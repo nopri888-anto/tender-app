@@ -43,12 +43,12 @@ class UtilityController extends Controller
     public function regAuth(Request $request)
     {
         $messages = [
-            'unique' => 'NPWP ini Sudah digunakan',
+            'unique' => 'NIK KTP ini Sudah digunakan',
         ];
 
         $this->validate($request, [
             'nameVendor' => 'required',
-            'noNpwp' => 'required|numeric|unique:data_companies,noNpwp',
+            'noKtp' => 'required|numeric|unique:data_companies,noKtp',
         ], $messages);
 
         $dataCompany = DataCompany::create([
@@ -60,30 +60,34 @@ class UtilityController extends Controller
             'kodepos' => '',
             'notelp' => '',
             'email' => '',
-            'noNpwp' => $request->noNpwp,
-            'noKtp' => '',
+            'noNpwp' => '',
+            'noKtp' => $request->noKtp,
             'status' => 2,
         ]);
 
-        dd($dataCompany);
+        $id = $dataCompany->id;
+        $company = DataCompany::find($id);
 
-        if ($dataCompany) {
-            return redirect()->route('regis')
-                ->with('toast_error', 'NPWP Sudah Digunakan.');
+
+        if ($company) {
+            return redirect()->route('biodata', compact('company'))->with([
+                'toast_success' => 'Mohon isi data perusahaan!'
+            ]);
         } else {
+            return redirect()->route('regis')
+                ->with('toast_error', 'NIK KTP Sudah Digunakan.');
 
-
-            if ($dataCompany) {
-                $id = $dataCompany->id;
-                $data = DataCompany::find($id);
-                return redirect()->route('biodata', compact('data'))->with([
-                    'toast_success' => 'Mohon isi data perusahaan!'
-                ]);
-            } else {
-                return redirect()->back()->withInput()->with([
-                    'toast_error' => 'Gagal Registrasi!'
-                ]);
-            }
+            // if ($dataCompany) {
+            //     $id = $dataCompany->id;
+            //     $data = DataCompany::find($id);
+            //     return redirect()->route('biodata', compact('data'))->with([
+            //         'toast_success' => 'Mohon isi data perusahaan!'
+            //     ]);
+            // } else {
+            //     return redirect()->back()->withInput()->with([
+            //         'toast_error' => 'Gagal Registrasi!'
+            //     ]);
+            // }
         }
     }
 
@@ -97,40 +101,48 @@ class UtilityController extends Controller
             'kodepos' => 'required',
             'notelp' => 'required',
             'email' => 'required',
-            'noKtp' => 'required|numeric',
+            'noNpwp' => 'required|numeric',
         ]);
 
-        $data = DataCompany::find($id);
-        $ktp = $data->noKtp;
+        $update = User::find($id)->update([
+            'alamat' => $request->alamat,
+            'kab' => $request->kab,
+            'provinsi' => $request->provinsi,
+            'kodepos' => $request->kodepos,
+            'email' => $request->email,
+            'noNpwp' => $request->noNpwp,
+        ]);
+        $npwp = $update->noNpwp;
 
-        if ($ktp) {
-            return redirect()->back()->withInput()->with([
-                'toast_error' => 'KTP Sudah digunakan!'
-            ]);
+        if ($npwp) {
+            dd($npwp);
+            // return redirect()->back()->withInput()->with([
+            //     'toast_error' => 'NPWP Sudah digunakan!'
+            // ]);
         } else {
-            $update = DataCompany::findOrFail($id);
+            // $update = DataCompany::findOrFail($id);
 
-            $update->update([
-                'alamat' => $request->alamat,
-                'kab' => $request->kab,
-                'provinsi' => $request->provinsi,
-                'kodepos' => $request->kodepos,
-                'notelp' => $request->notelp,
-                'email' => $request->email,
-                'noKtp' => $request->noKtp,
-            ]);
+            // $update->update([
+            //     'alamat' => $request->alamat,
+            //     'kab' => $request->kab,
+            //     'provinsi' => $request->provinsi,
+            //     'kodepos' => $request->kodepos,
+            //     'notelp' => $request->notelp,
+            //     'email' => $request->email,
+            //     'noNpwp' => $request->noNpwp,
+            // ]);
 
-            if ($update) {
-                $id = $update->id;
-                $data = DataCompany::where('id', '=', $id)->first();
-                return redirect()->route('dokumen', compact('data'))->with([
-                    'toast_success' => 'Mohon isi Dokumen Perusahaan!'
-                ]);
-            } else {
-                return redirect()->back()->withInput()->with([
-                    'toast_error' => 'Gagal Registrasi!'
-                ]);
-            }
+            // if ($update) {
+            //     $id = $update->id;
+            //     $data = DataCompany::where('id', '=', $id)->first();
+            //     return redirect()->route('dokumen', compact('data'))->with([
+            //         'toast_success' => 'Mohon isi Dokumen Perusahaan!'
+            //     ]);
+            // } else {
+            //     return redirect()->back()->withInput()->with([
+            //         'toast_error' => 'Gagal Registrasi!'
+            //     ]);
+            // }
         }
     }
 

@@ -29,7 +29,7 @@ Route::get('/tender', [App\Http\Controllers\IndexController::class, 'tender'])->
 Route::get('/contact', [App\Http\Controllers\IndexController::class, 'contact'])->name('contact');
 Route::get('/activity', [App\Http\Controllers\IndexController::class, 'activity'])->name('activity');
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news');
-Route::get('/biodata/{data}', [App\Http\Controllers\IndexController::class, 'biodata'])->name('biodata');
+Route::get('/biodata/{company}', [App\Http\Controllers\IndexController::class, 'biodata'])->name('biodata');
 Route::get('/dokumen/{data}', [App\Http\Controllers\IndexController::class, 'dokumen'])->name('dokumen');
 
 Route::post('/actionAuth', [App\Http\Controllers\UtilityController::class, 'actionAuth'])->name('actionAuth');

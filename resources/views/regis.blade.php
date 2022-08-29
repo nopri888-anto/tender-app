@@ -38,8 +38,8 @@
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="noNpwp" id="noNpwp" maxlength="16" required placeholder="Nomor NPWP">
-                                    <label for="noNpwp">Nomor NPWP</label>
+                                    <input type="text" class="form-control" name="noKtp" id="noKtp" maxlength="16" required placeholder="NIK KTP">
+                                    <label for="noKtp">NIK KTP</label>
                                 </div>
                             </div>
                             <div class="col-12">
