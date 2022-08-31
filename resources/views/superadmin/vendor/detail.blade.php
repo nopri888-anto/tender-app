@@ -132,7 +132,7 @@
                   </div>
               </div>
             </div>
-            <a href="{{route('superadmin.vendors.index')}}" type="button" class="btn btn-warning">Validasi</a>
+            <a href="{{route('superadmin.vendor.validasi',$data->dokumen->id_biodata)}}" type="button" class="btn btn-warning">Validasi</a>
       </div>
 @endsection
       

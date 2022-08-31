@@ -46,9 +46,14 @@ Route::group(['middleware' => ['is_role:1']], function () {
     Route::get('/edit_user/{id}', [App\Http\Controllers\superadmin\UserController::class, 'edit'])->name('superadmin.user.edit');
     Route::post('/update_user/{id}', [App\Http\Controllers\superadmin\UserController::class, 'update'])->name('superadmin.user.update');
 
+    //Route vendor
     Route::get('/vendors', [App\Http\Controllers\superadmin\SuperAdminController::class, 'vendorApp'])->name('superadmin.vendors.index');
     Route::get('/detail_vendor/{id}', [App\Http\Controllers\superadmin\VendorController::class, 'show'])->name('superadmin.vendors.detail');
+    Route::get('/validasi/{id}', [App\Http\Controllers\superadmin\ValidasiController::class, 'validasiVendor'])->name('superadmin.vendor.validasi');
+    Route::post('/email', [App\Http\Controllers\superadmin\ValidasiController::class, 'email'])->name('superadmin.vendor.email');
 
+
+    //Route dowload dokumen
     Route::get('/downloadNpwp/{npwp}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenNPWP'])->name('superadmin.npwp.download');
     Route::get('/downloadAkta/{akta}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenAkta'])->name('superadmin.akta.download');
     Route::get('/downloadUsaha/{induk}', [App\Http\Controllers\superadmin\VendorController::class, 'downloadDokumenIndukUsaha'])->name('superadmin.usaha.download');

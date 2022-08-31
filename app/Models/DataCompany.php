@@ -40,4 +40,9 @@ class DataCompany extends Model
     {
         return $this->hasOne('App\Models\TenderModal', 'id_vendor');
     }
+
+    public function userVendor()
+    {
+        return $this->hasOne('App\Models\userVendor', 'id_company');
+    }
 }

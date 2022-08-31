@@ -30,7 +30,7 @@ class SendEmail extends Mailable
     public function build()
     {
         return $this->from('tender@test-nopri.masuk.web.id')
-                     ->subject('User Login')
-                     ->view('admin.email.send');
+                     ->subject('User Akses Login')
+                     ->view('superadmin.vendor.email');
     }
 }
