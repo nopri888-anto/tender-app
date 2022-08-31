@@ -28,61 +28,54 @@
                         @csrf
                         @method('PUT')
                         <div class="row g-3">
-                            {{-- <div class="col-md-8">
+                            <div class="col-md-8">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="nameVendor" id="nameVendor" value="{{$data->nameVendor}}" readonly>
                                     <label for="nameVendor">Nama Perusahaan</label>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <textarea type="text" class="form-control" name="alamat" id="alamat" required placeholder="Alamat"></textarea>
+                                    <textarea type="text" class="form-control" name="alamat" id="alamat" required placeholder="Alamat">{{ old('alamat') }}</textarea>
                                     <label for="alamat">Alamat</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="kab" id="kab" required placeholder="Kabupaten / Kota">
+                                    <input type="text" value="{{ old('kab') }}" class="form-control" name="kab" id="kab" required placeholder="Kabupaten / Kota">
                                     <label for="kab">Kabupaten / Kota</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="provinsi" id="provinsi" required placeholder="Provinsi">
+                                    <input type="text" value="{{ old('provinsi') }}" class="form-control" name="provinsi" id="provinsi" required placeholder="Provinsi">
                                     <label for="provinsi">Povinsi</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="kodepos" id="kodepos" required placeholder="Kode Pos">
+                                    <input type="text" value="{{ old('kodepos') }}" class="form-control" name="kodepos" id="kodepos" required placeholder="Kode Pos">
                                     <label for="kodepos">Kodepos</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="email" id="email" required placeholder="E-mail">
+                                    <input type="text" value="{{ old('email') }}" class="form-control" name="email" id="email" required placeholder="E-mail">
                                     <label for="email">E-mail</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="13"  name="notelp" id="notelp" required placeholder="No Telp">
+                                    <input type="text" value="{{ old('notelp') }}" class="form-control" maxlength="13"  name="notelp" id="notelp" required placeholder="No Telp">
                                     <label for="notelp">No Telp</label>
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="16" name="noNpwp" id="noNpwp" required placeholder="No NPWP">
+                                    <input type="text" value="{{ old('noNpwp') }}" class="form-control" maxlength="16" name="noNpwp" id="noNpwp" required placeholder="No NPWP">
                                     <label for="noNpwp">No NPWP</label>
                                 </div>
                             </div>
-                            <div class="col-8">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" maxlength="16" name="noNpwp" id="noNpwp" required value="{{$data->id}}">
-                                    <label for="noNpwp">No NPWP</label>
-                                </div>
-                            </div>
-                            
                             <div class="col-12">
                                 <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Simpan</button>
                             </div>

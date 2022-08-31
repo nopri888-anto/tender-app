@@ -33,7 +33,7 @@
     <header class="topbar" data-navbarbg="skin5">
       <nav class="navbar top-navbar navbar-expand-md navbar-dark">
         <div class="navbar-header" data-logobg="skin5">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="#.html">
             <!-- Logo icon -->
             <b class="logo-icon ps-2">
               <img src="{{asset('vendor/template/assets/images/logo-icon.png')}}" alt="homepage" class="light-logo" width="25" />
@@ -42,7 +42,7 @@
             <!-- Logo text -->
             <span class="logo-text ms-2">
               <!-- dark Logo text -->
-              PORTAL TENDER
+              E-LELANG
             </span>
           </a>
           <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i

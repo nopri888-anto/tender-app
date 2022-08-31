@@ -50,13 +50,13 @@ class IndexController extends Controller
 
     public function biodata($id)
     {
-        $data = DataCompany::find($id)->first();
-        return view('biodata',compact('data'));
+        $data = DataCompany::findOrFail($id);
+        return view('biodata', compact('data'));
     }
 
     public function dokumen($id)
     {
-        $data = DataCompany::find($id)->first();
+        $data = DataCompany::findOrFail($id);
         return view('dokumen',compact('data'));
     }
     

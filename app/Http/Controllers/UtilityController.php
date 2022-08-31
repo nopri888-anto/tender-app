@@ -43,6 +43,7 @@ class UtilityController extends Controller
     public function regAuth(Request $request)
     {
         $messages = [
+            'required'=> 'Mohon Data diisi',
             'unique' => 'NIK KTP ini Sudah digunakan',
         ];
 
@@ -51,7 +52,7 @@ class UtilityController extends Controller
             'noKtp' => 'required|numeric|unique:data_companies,noKtp',
         ], $messages);
 
-        $dataCompany = DataCompany::create([
+        $save = DataCompany::create([
             'kodeVendor' => '',
             'nameVendor' => $request->nameVendor,
             'alamat' => '',
@@ -65,34 +66,33 @@ class UtilityController extends Controller
             'status' => 2,
         ]);
 
-        $id = $dataCompany->id;
-        $company = DataCompany::find($id);
+        if ($save) {
+            $id = $save->id;
+            $data = DataCompany::findOrFail($id);
 
-
-        if ($company) {
-            return redirect()->route('biodata', compact('company'))->with([
-                'toast_success' => 'Mohon isi data perusahaan!'
-            ]);
+            if($data){
+                return redirect()->route('biodata', compact('data'))->with([
+                    'toast_success' => 'Mohon isi data perusahaan!'
+                ]);
+            }else{
+                return redirect()->route('regis')
+            ->with('error', 'Data Tidak Di temukan.');
+            }
+            
         } else {
             return redirect()->route('regis')
-                ->with('toast_error', 'NIK KTP Sudah Digunakan.');
-
-            // if ($dataCompany) {
-            //     $id = $dataCompany->id;
-            //     $data = DataCompany::find($id);
-            //     return redirect()->route('biodata', compact('data'))->with([
-            //         'toast_success' => 'Mohon isi data perusahaan!'
-            //     ]);
-            // } else {
-            //     return redirect()->back()->withInput()->with([
-            //         'toast_error' => 'Gagal Registrasi!'
-            //     ]);
-            // }
+                ->with('toast_error', 'NIK KTP Sudah digunakan.');
         }
     }
+    
 
     public function updateData(Request $request, $id)
     {
+        $messages = [
+            'required'=> 'Mohon Data diisi',
+            'unique'=> 'NPWP sudah terdaftar',
+            'numeric' => 'Harus diisi angka',
+        ];
 
         $this->validate($request, [
             'alamat' => 'required',
@@ -101,64 +101,74 @@ class UtilityController extends Controller
             'kodepos' => 'required',
             'notelp' => 'required',
             'email' => 'required',
-            'noNpwp' => 'required|numeric',
-        ]);
+            'noNpwp' => 'required|numeric|unique:data_companies,noNpwp',
+        ],$messages);
 
-        $update = User::find($id)->update([
+        $update = DataCompany::find($id)->update([
             'alamat' => $request->alamat,
             'kab' => $request->kab,
             'provinsi' => $request->provinsi,
             'kodepos' => $request->kodepos,
+            'notelp' => $request->notelp,
             'email' => $request->email,
             'noNpwp' => $request->noNpwp,
         ]);
-        $npwp = $update->noNpwp;
+        $data = DataCompany::findOrFail($id);
 
-        if ($npwp) {
-            dd($npwp);
-            // return redirect()->back()->withInput()->with([
-            //     'toast_error' => 'NPWP Sudah digunakan!'
-            // ]);
+        if ($data) {
+                return redirect()->route('dokumen', compact('data'))->with([
+                    'toast_success' => 'Mohon isi Dokumen Perusahaan!'
+                ]);
         } else {
-            // $update = DataCompany::findOrFail($id);
-
-            // $update->update([
-            //     'alamat' => $request->alamat,
-            //     'kab' => $request->kab,
-            //     'provinsi' => $request->provinsi,
-            //     'kodepos' => $request->kodepos,
-            //     'notelp' => $request->notelp,
-            //     'email' => $request->email,
-            //     'noNpwp' => $request->noNpwp,
-            // ]);
-
-            // if ($update) {
-            //     $id = $update->id;
-            //     $data = DataCompany::where('id', '=', $id)->first();
-            //     return redirect()->route('dokumen', compact('data'))->with([
-            //         'toast_success' => 'Mohon isi Dokumen Perusahaan!'
-            //     ]);
-            // } else {
-            //     return redirect()->back()->withInput()->with([
-            //         'toast_error' => 'Gagal Registrasi!'
-            //     ]);
-            // }
+            return redirect()->back()->withInput()->with([
+                'toast_error' => 'Data tidak ditemukan!'
+            ]);
         }
     }
 
 
     public function uploadDokumen(Request $request)
     {
+
+        $messages = [
+            'aktaUsaha.required'=> 'Akta harus diisi',
+            'dokumenIndukUsaha.required'=> 'Induk Usaha harus diisi',
+            'nomorIndukUsaha.required'=> 'Nomor Induk Usaha harus diisi',
+            'npwp.required'=> 'NPWP harus diisi',
+            'fotoWorkshop.required'=> 'Workshop harus diisi',
+            'suratPernyataan.required'=> 'Surat Pernyataan harus diisi',
+            'suratPendaftaran.required'=> 'Surat Pendaftaraan harus diisi',
+
+            'aktaUsaha.mimes'=> 'Format Dokumen Harus PDF',
+            'aktaUsaha.max'=> 'Ukuran dokumen lebih besar',
+
+            'dokumenIndukUsaha.mimes'=> 'Format Dokumen Harus PDF',
+            'dokumenIndukUsaha.max'=> 'Ukuran dokumen lebih besar',
+
+            'npwp.mimes'=> 'Format harus Foto',
+            'npwp.max'=> 'Ukuran dokumen lebih besar',
+
+            'fotoWorkshop.mimes'=> 'Format harus Foto',
+            'fotoWorkshop.max'=> 'Ukuran dokumen lebih besar',
+
+            'suratPernyataan.mimes'=> 'Format Dokumen Harus PDF',
+            'suratPernyataan.max'=> 'Ukuran dokumen lebih besar',
+
+            'suratPendaftaran.mimes'=> 'Format Dokumen Harus PDF',
+            'suratPendaftaran.max'=> 'Ukuran dokumen lebih besar',
+
+        ];
+
         $this->validate($request, [
-            'aktaUsaha' => 'required|mimes:pdf,jpg,png,jpeg|max:2048',
-            'dokumenIndukUsaha' => 'required|mimes:pdf,jpg,png,jpeg|max:2048',
+            'aktaUsaha' => 'required|mimes:pdf|max:2048',
+            'dokumenIndukUsaha' => 'required|mimes:pdf|max:2048',
             'nomorIndukUsaha' => 'required',
-            'npwp' => 'required|mimes:pdf,jpg,png,jpeg|max:2048',
+            'npwp' => 'required|mimes:jpg,png,jpeg|max:2048',
             'fotoWorkshop' => 'required|mimes:jpg,png,jpeg|max:2048',
-            'suratPernyataan' => 'required|mimes:pdf,jpg,png,jpeg|max:2048',
-            'suratPendaftaran' => 'required|mimes:pdf,jpg,png,jpeg|max:2048',
+            'suratPernyataan' => 'required|mimes:pdf|max:2048',
+            'suratPendaftaran' => 'required|mimes:pdf|max:2048',
             'id_biodata' => 'required',
-        ]);
+        ],$messages);
 
         $npwp = 'N' . time() . '.' . $request->npwp->getClientOriginalExtension();
         $request->npwp->move(public_path('dokumen/npwp'), $npwp);

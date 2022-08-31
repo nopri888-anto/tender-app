@@ -24,7 +24,6 @@
 @endif
                 <div class="p-lg ps-lg-0">
                     <h6 class="text-primary">Document Company</h6>
-                    <span class="text-danger fst-italic fw-lighter">*Format Dokumen PDF,JPG dan PNG (Maksimal 2 MB)</span>
                     <form method="POST" action="{{route('uploadDokumen')}}" enctype="multipart/form-data"> 
                         @csrf
                         <div class="row g-3 mt-3">
@@ -52,7 +51,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="nomorIndukUsaha" id="nomorIndukUsaha">
+                                    <input type="text" class="form-control" name="nomorIndukUsaha" maxlength="13" id="nomorIndukUsaha">
                                     <label for="nomorIndukUsaha">Nomor Induk Berusaha</label>
                                 </div>
                             </div>

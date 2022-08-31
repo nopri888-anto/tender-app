@@ -49,7 +49,7 @@
 
 
     <!-- Topbar Start -->
-    <div class="container-fluid bg-dark p-0">
+    {{-- <div class="container-fluid bg-dark p-0">
         <div class="row gx-0 d-none d-lg-flex">
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
@@ -77,14 +77,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Topbar End -->
 
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0 text-primary">PortalTender</h2>
+            <h2 class="m-0 text-primary">E-Lelang</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
