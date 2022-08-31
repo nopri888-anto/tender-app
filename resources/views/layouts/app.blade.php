@@ -11,10 +11,11 @@
   <meta name="description"
     content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>Portal Tender</title>
+  <title>E-LELANG</title>
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('vendor/template/assets/images/favicon.png')}}" />
   <link href="{{asset('vendor/template/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="{{asset('vendor/template/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
   <!-- Custom CSS -->
   <link href="{{asset('vendor/template/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet" />
   <!-- Custom CSS -->
@@ -170,13 +171,13 @@
       <script src="{{asset('vendor/template/assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
       <script src="{{asset('vendor/template/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
       <script src="{{asset('vendor/template/dist/js/pages/chart/chart-page-init.js')}}"></script>
-
+      <script src="{{asset('vendor/template/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
       <script src="{{asset('vendor/template/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
       <script>
-      /****************************************
-       *       Basic Table                   *
-       ****************************************/
       $("#zero_config").DataTable();
+
+      /*datwpicker*/
+      jQuery('.mydatepicker').datepicker();
       </script>
     </body>
     

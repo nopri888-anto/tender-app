@@ -67,7 +67,8 @@
                       </tr>
                     </thead>
                   </table>
-                  <a href="{{route('superadmin.tender.index')}}" class="btn btn-info">Back</a>
+                  <a href="{{route('superadmin.tender.index')}}" class="btn btn-info">Kembali</a>
+                  <a href="{{route('superadmin.tender.step',$tender->id)}}" class="btn btn-success text-white">Tambah Tahapan Lelang</a>
                 </div>
               </div>
             </div>

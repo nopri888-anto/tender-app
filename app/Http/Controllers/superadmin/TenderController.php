@@ -101,12 +101,7 @@ class TenderController extends Controller
         return view('superadmin.tender.detail', compact('tender'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -124,14 +119,15 @@ class TenderController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
+    }
+
+    public function step($id)
+    {
+        $data = TenderModal::find($id);
+        return view('superadmin.tender.step', compact('data'));
     }
 }

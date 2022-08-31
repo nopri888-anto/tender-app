@@ -66,6 +66,7 @@ Route::group(['middleware' => ['is_role:1']], function () {
     Route::get('/create_tender', [App\Http\Controllers\superadmin\TenderController::class, 'create'])->name('superadmin.tender.create');
     Route::post('/post_tender', [App\Http\Controllers\superadmin\TenderController::class, 'store'])->name('superadmin.tender.store');
     Route::get('/detail_tender/{id}', [App\Http\Controllers\superadmin\TenderController::class, 'show'])->name('superadmin.tender.detail');
+    Route::get('/step_lelang/{id}', [App\Http\Controllers\superadmin\TenderController::class, 'step'])->name('superadmin.tender.step');
 });
 
 Route::group(['middleware' => ['is_role:2']], function () {
