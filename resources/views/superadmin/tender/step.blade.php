@@ -65,7 +65,7 @@
                     '<td>'+
                     '<input type="text" name="moreFields['+i+'][akhir]" placeholder="mm/dd/yyyy" class="form-control mydatepicker" /></td>'+
                     '<td>'+
-                    '<button type="button" class="btn btn-danger remove-tr">'+
+                    '<button type="button" class="btn btn-danger remove-tr">'+  
                     '<i class="mdi mdi-close-circle-outline"></i></button></td></tr>');
             });
            
