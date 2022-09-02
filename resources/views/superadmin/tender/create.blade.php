@@ -24,7 +24,9 @@
         
 
       <div class="container-fluid">
-        @if (count($errors)>0)
+        
+            <div class="row">
+              @if (count($errors)>0)
         <div class="alert alert-danger">
           <ul>
             @foreach ($errors->all() as $error)
@@ -40,7 +42,6 @@
         <p>{{\Session::get('success')}}</p>
         </div>
         @endif
-            <div class="row">
                 <form action="{{route('superadmin.tender.store')}}" method="POST">
                     @csrf
                 <div class="col">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\TenderModal;
+use App\Models\StepBinnding;
 
 class TenderController extends Controller
 {
@@ -127,7 +128,22 @@ class TenderController extends Controller
 
     public function step($id)
     {
-        $data = TenderModal::find($id);
-        return view('superadmin.tender.step', compact('data'));
+        // $datas = TenderModal::find($id);
+        $datas = TenderModal::find($id);
+        return view('superadmin.tender.step', compact('datas'));
+    }
+
+    public function storeStep(Request $request)
+    {
+        $messages = [
+            'step.required' => 'Tahapan harus diisi.',
+            'awal.required' => 'Tanggal Mulai harus diisi.',
+            'akhir.required' => 'Tanggal Akhir diisi.',
+        ];
+        $this->validate($request, [
+            'step' => 'required',
+            'awal' => 'required',
+            'akhir' => 'required',
+        ], $messages);
     }
 }

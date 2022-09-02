@@ -31,4 +31,9 @@ class TenderModal extends Model
     {
         return $this->belongsTo('App\Models\DataCompany', 'id_vendor');
     }
+
+    public function stepBinding()
+    {
+        return $this->hasOne('App\Models\StepBinnding', 'id_binding');
+    }
 }
